@@ -30,13 +30,17 @@ class _ContactListScreenState extends State<ContactListScreen> {
     );
   }
 
-  // void ChangeDateFormat() {
+  daysAgo() {
+    for (int i = 0; i < contact.length; i++) {
+      DateTime now = DateTime.now();
+      DateTime checkin = DateTime.parse(contact[i].date);
 
-  //   if (contact.length > 0){
+      Duration indays = now.difference(checkin);
 
-  //     var oldDate = ;
-  //   }
-  // }
+      var res = indays.inDays;
+      print("$res days ago");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +56,9 @@ class _ContactListScreenState extends State<ContactListScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    ElevatedButton(onPressed: () {}, child: Text("Old time")),
-                    ElevatedButton(onPressed: () {}, child: Text("Time ago"))
+                    ElevatedButton(
+                        onPressed: readJsonFile, child: Text("Old time")),
+                    ElevatedButton(onPressed: daysAgo, child: Text("Time ago"))
                   ],
                 ),
               ),
